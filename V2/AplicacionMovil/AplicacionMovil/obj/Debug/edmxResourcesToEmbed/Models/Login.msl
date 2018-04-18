@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UHConsultaModelStoreContainer" CdmEntityContainer="UHConsultaEntities">
+    <EntitySetMapping Name="asistente">
+      <EntityTypeMapping TypeName="UHConsultaModel.asistente">
+        <MappingFragment StoreEntitySet="asistente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cita">
+      <EntityTypeMapping TypeName="UHConsultaModel.cita">
+        <MappingFragment StoreEntitySet="cita">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="paciente_id" ColumnName="paciente_id" />
+          <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contraseña">
+      <EntityTypeMapping TypeName="UHConsultaModel.contraseña">
+        <MappingFragment StoreEntitySet="contraseña">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="olvidada" ColumnName="olvidada" />
+          <ScalarProperty Name="solicitud" ColumnName="solicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="datos_preconsulta">
+      <EntityTypeMapping TypeName="UHConsultaModel.datos_preconsulta">
+        <MappingFragment StoreEntitySet="datos_preconsulta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="preconsulta_id" ColumnName="preconsulta_id" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="estatura" ColumnName="estatura" />
+          <ScalarProperty Name="presion" ColumnName="presion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="diagnostico">
+      <EntityTypeMapping TypeName="UHConsultaModel.diagnostico">
+        <MappingFragment StoreEntitySet="diagnostico">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="preconsulta_id" ColumnName="preconsulta_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="doctor">
+      <EntityTypeMapping TypeName="UHConsultaModel.doctor">
+        <MappingFragment StoreEntitySet="doctor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="servicio_id" ColumnName="servicio_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="examen">
+      <EntityTypeMapping TypeName="UHConsultaModel.examen">
+        <MappingFragment StoreEntitySet="examen">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nutricion">
+      <EntityTypeMapping TypeName="UHConsultaModel.nutricion">
+        <MappingFragment StoreEntitySet="nutricion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+          <ScalarProperty Name="peso_usual" ColumnName="peso_usual" />
+          <ScalarProperty Name="c_muñeca" ColumnName="c_muñeca" />
+          <ScalarProperty Name="a_rodilla" ColumnName="a_rodilla" />
+          <ScalarProperty Name="c_braquial" ColumnName="c_braquial" />
+          <ScalarProperty Name="c_abdominal" ColumnName="c_abdominal" />
+          <ScalarProperty Name="c_cadera" ColumnName="c_cadera" />
+          <ScalarProperty Name="porcentaje_grasa" ColumnName="porcentaje_grasa" />
+          <ScalarProperty Name="talla_utilizar" ColumnName="talla_utilizar" />
+          <ScalarProperty Name="PI_utilizar" ColumnName="PI_utilizar" />
+          <ScalarProperty Name="IMC" ColumnName="IMC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="paciente">
+      <EntityTypeMapping TypeName="UHConsultaModel.paciente">
+        <MappingFragment StoreEntitySet="paciente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="perfil">
+      <EntityTypeMapping TypeName="UHConsultaModel.perfil">
+        <MappingFragment StoreEntitySet="perfil">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+          <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="estado_civil" ColumnName="estado_civil" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="provincia" ColumnName="provincia" />
+          <ScalarProperty Name="canton" ColumnName="canton" />
+          <ScalarProperty Name="distrito" ColumnName="distrito" />
+          <ScalarProperty Name="direccion_detallada" ColumnName="direccion_detallada" />
+          <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="preconsulta">
+      <EntityTypeMapping TypeName="UHConsultaModel.preconsulta">
+        <MappingFragment StoreEntitySet="preconsulta">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cita_id" ColumnName="cita_id" />
+          <ScalarProperty Name="asistente_id" ColumnName="asistente_id" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicio">
+      <EntityTypeMapping TypeName="UHConsultaModel.servicio">
+        <MappingFragment StoreEntitySet="servicio">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="UHConsultaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tratamiento">
+      <EntityTypeMapping TypeName="UHConsultaModel.tratamiento">
+        <MappingFragment StoreEntitySet="tratamiento">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+          <ScalarProperty Name="Medicamento" ColumnName="Medicamento" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+          <ScalarProperty Name="dosis" ColumnName="dosis" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="UHConsultaModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

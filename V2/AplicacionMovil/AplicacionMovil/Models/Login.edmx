@@ -1,0 +1,1123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UHConsultaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asistente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+        </EntityType>
+        <EntityType Name="cita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paciente_id" Type="int" />
+          <Property Name="doctor_id" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="estado" Type="int" />
+          <Property Name="hora" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="contraseña">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+          <Property Name="pass" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="olvidada" Type="int" />
+          <Property Name="solicitud" Type="datetime" />
+        </EntityType>
+        <EntityType Name="datos_preconsulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="preconsulta_id" Type="int" />
+          <Property Name="peso" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="estatura" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="presion" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="diagnostico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="preconsulta_id" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="motivo" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+          <Property Name="servicio_id" Type="int" />
+        </EntityType>
+        <EntityType Name="examen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diagnostico_id" Type="int" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="imagen" Type="image" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'UHConsulta.dbo.MyTable' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="MyTable">
+          <Property Name="MyDecimalColumn" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="MyNumericColumn" Type="numeric" Precision="10" Scale="5" />
+        </EntityType>-->
+        <EntityType Name="nutricion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diagnostico_id" Type="int" />
+          <Property Name="peso_usual" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="c_muñeca" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="a_rodilla" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="c_braquial" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="c_abdominal" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="c_cadera" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="porcentaje_grasa" Type="int" />
+          <Property Name="talla_utilizar" Type="int" />
+          <Property Name="PI_utilizar" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="IMC" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="paciente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+        </EntityType>
+        <EntityType Name="perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" />
+          <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="primer_apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="segundo_apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="estado_civil" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="11" />
+          <Property Name="provincia" Type="varchar" MaxLength="50" />
+          <Property Name="canton" Type="varchar" MaxLength="50" />
+          <Property Name="distrito" Type="varchar" MaxLength="50" />
+          <Property Name="direccion_detallada" Type="varchar" MaxLength="150" />
+          <Property Name="tipo_sangre" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="preconsulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cita_id" Type="int" />
+          <Property Name="asistente_id" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="motivo" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tratamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diagnostico_id" Type="int" />
+          <Property Name="Medicamento" Type="nvarchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_final" Type="datetime" />
+          <Property Name="dosis" Type="nvarchar" MaxLength="100" />
+          <Property Name="detalle" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="tipo" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Asistente_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="asistente" Type="Self.asistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="asistente">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_asistente_id">
+          <End Role="asistente" Type="Self.asistente" Multiplicity="0..1" />
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asistente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="preconsulta">
+              <PropertyRef Name="asistente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_Doctor_id">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_Paciente_id">
+          <End Role="paciente" Type="Self.paciente" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paciente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="paciente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contraseña_Usuario_usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="contraseña" Type="Self.contraseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contraseña">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="diagnostico_preconsulta_id">
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preconsulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="diagnostico">
+              <PropertyRef Name="preconsulta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Doctor_Servicio_id">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="0..1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="servicio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Doctor_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Examen_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="examen" Type="Self.examen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="examen">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TempSales_SalesReason">
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="datos_preconsulta" Type="Self.datos_preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preconsulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="datos_preconsulta">
+              <PropertyRef Name="preconsulta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Nutricion_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="nutricion" Type="Self.nutricion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nutricion">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="paciente_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paciente" Type="Self.paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Perfil_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="perfil" Type="Self.perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="perfil">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Preconsulta_Cita_id">
+          <End Role="cita" Type="Self.cita" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cita">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="preconsulta">
+              <PropertyRef Name="cita_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tratamiento_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tratamiento" Type="Self.tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tratamiento">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UHConsultaModelStoreContainer">
+          <EntitySet Name="asistente" EntityType="Self.asistente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cita" EntityType="Self.cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contraseña" EntityType="Self.contraseña" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="datos_preconsulta" EntityType="Self.datos_preconsulta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="diagnostico" EntityType="Self.diagnostico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="examen" EntityType="Self.examen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nutricion" EntityType="Self.nutricion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paciente" EntityType="Self.paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="perfil" EntityType="Self.perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="preconsulta" EntityType="Self.preconsulta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tratamiento" EntityType="Self.tratamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Asistente_Usuario_id" Association="Self.Asistente_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asistente" EntitySet="asistente" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_asistente_id" Association="Self.Cita_asistente_id">
+            <End Role="asistente" EntitySet="asistente" />
+            <End Role="preconsulta" EntitySet="preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_Doctor_id" Association="Self.Cita_Doctor_id">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_Paciente_id" Association="Self.Cita_Paciente_id">
+            <End Role="paciente" EntitySet="paciente" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
+          <AssociationSet Name="Contraseña_Usuario_usuario_id" Association="Self.Contraseña_Usuario_usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="contraseña" EntitySet="contraseña" />
+          </AssociationSet>
+          <AssociationSet Name="diagnostico_preconsulta_id" Association="Self.diagnostico_preconsulta_id">
+            <End Role="preconsulta" EntitySet="preconsulta" />
+            <End Role="diagnostico" EntitySet="diagnostico" />
+          </AssociationSet>
+          <AssociationSet Name="Doctor_Servicio_id" Association="Self.Doctor_Servicio_id">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="Doctor_Usuario_id" Association="Self.Doctor_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="Examen_Diagnostico_id" Association="Self.Examen_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="examen" EntitySet="examen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempSales_SalesReason" Association="Self.FK_TempSales_SalesReason">
+            <End Role="preconsulta" EntitySet="preconsulta" />
+            <End Role="datos_preconsulta" EntitySet="datos_preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="Nutricion_Diagnostico_id" Association="Self.Nutricion_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="nutricion" EntitySet="nutricion" />
+          </AssociationSet>
+          <AssociationSet Name="paciente_Usuario_id" Association="Self.paciente_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="Perfil_Usuario_id" Association="Self.Perfil_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="perfil" EntitySet="perfil" />
+          </AssociationSet>
+          <AssociationSet Name="Preconsulta_Cita_id" Association="Self.Preconsulta_Cita_id">
+            <End Role="cita" EntitySet="cita" />
+            <End Role="preconsulta" EntitySet="preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="Tratamiento_Diagnostico_id" Association="Self.Tratamiento_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="tratamiento" EntitySet="tratamiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UHConsultaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="asistente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="usuario" Relationship="Self.Asistente_Usuario_id" FromRole="asistente" ToRole="usuario" />
+          <NavigationProperty Name="preconsulta" Relationship="Self.Cita_asistente_id" FromRole="asistente" ToRole="preconsulta" />
+        </EntityType>
+        <EntityType Name="cita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente_id" Type="Int32" />
+          <Property Name="doctor_id" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="hora" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="doctor" Relationship="Self.Cita_Doctor_id" FromRole="cita" ToRole="doctor" />
+          <NavigationProperty Name="paciente" Relationship="Self.Cita_Paciente_id" FromRole="cita" ToRole="paciente" />
+          <NavigationProperty Name="preconsulta" Relationship="Self.Preconsulta_Cita_id" FromRole="cita" ToRole="preconsulta" />
+        </EntityType>
+        <EntityType Name="contraseña">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="olvidada" Type="Int32" />
+          <Property Name="solicitud" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="usuario" Relationship="Self.Contraseña_Usuario_usuario_id" FromRole="contraseña" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="datos_preconsulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="preconsulta_id" Type="Int32" />
+          <Property Name="peso" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="estatura" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="presion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="preconsulta" Relationship="Self.FK_TempSales_SalesReason" FromRole="datos_preconsulta" ToRole="preconsulta" />
+        </EntityType>
+        <EntityType Name="diagnostico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="preconsulta_id" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="motivo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="preconsulta" Relationship="Self.diagnostico_preconsulta_id" FromRole="diagnostico" ToRole="preconsulta" />
+          <NavigationProperty Name="examen" Relationship="Self.Examen_Diagnostico_id" FromRole="diagnostico" ToRole="examen" />
+          <NavigationProperty Name="nutricion" Relationship="Self.Nutricion_Diagnostico_id" FromRole="diagnostico" ToRole="nutricion" />
+          <NavigationProperty Name="tratamiento" Relationship="Self.Tratamiento_Diagnostico_id" FromRole="diagnostico" ToRole="tratamiento" />
+        </EntityType>
+        <EntityType Name="doctor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <Property Name="servicio_id" Type="Int32" />
+          <NavigationProperty Name="cita" Relationship="Self.Cita_Doctor_id" FromRole="doctor" ToRole="cita" />
+          <NavigationProperty Name="servicio" Relationship="Self.Doctor_Servicio_id" FromRole="doctor" ToRole="servicio" />
+          <NavigationProperty Name="usuario" Relationship="Self.Doctor_Usuario_id" FromRole="doctor" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="examen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diagnostico_id" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="diagnostico" Relationship="Self.Examen_Diagnostico_id" FromRole="examen" ToRole="diagnostico" />
+        </EntityType>
+        <EntityType Name="nutricion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diagnostico_id" Type="Int32" />
+          <Property Name="peso_usual" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="c_muñeca" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="a_rodilla" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="c_braquial" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="c_abdominal" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="c_cadera" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="porcentaje_grasa" Type="Int32" />
+          <Property Name="talla_utilizar" Type="Int32" />
+          <Property Name="PI_utilizar" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="IMC" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="diagnostico" Relationship="Self.Nutricion_Diagnostico_id" FromRole="nutricion" ToRole="diagnostico" />
+        </EntityType>
+        <EntityType Name="paciente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <NavigationProperty Name="cita" Relationship="Self.Cita_Paciente_id" FromRole="paciente" ToRole="cita" />
+          <NavigationProperty Name="usuario" Relationship="Self.paciente_Usuario_id" FromRole="paciente" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="perfil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" />
+          <Property Name="identificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="primer_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="segundo_apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="estado_civil" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="canton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="distrito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion_detallada" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_sangre" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.Perfil_Usuario_id" FromRole="perfil" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="preconsulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cita_id" Type="Int32" />
+          <Property Name="asistente_id" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="motivo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="asistente" Relationship="Self.Cita_asistente_id" FromRole="preconsulta" ToRole="asistente" />
+          <NavigationProperty Name="cita" Relationship="Self.Preconsulta_Cita_id" FromRole="preconsulta" ToRole="cita" />
+          <NavigationProperty Name="datos_preconsulta" Relationship="Self.FK_TempSales_SalesReason" FromRole="preconsulta" ToRole="datos_preconsulta" />
+          <NavigationProperty Name="diagnostico" Relationship="Self.diagnostico_preconsulta_id" FromRole="preconsulta" ToRole="diagnostico" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="doctor" Relationship="Self.Doctor_Servicio_id" FromRole="servicio" ToRole="doctor" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tratamiento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="diagnostico_id" Type="Int32" />
+          <Property Name="Medicamento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_final" Type="DateTime" Precision="3" />
+          <Property Name="dosis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="detalle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="diagnostico" Relationship="Self.Tratamiento_Diagnostico_id" FromRole="tratamiento" ToRole="diagnostico" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="asistente" Relationship="Self.Asistente_Usuario_id" FromRole="usuario" ToRole="asistente" />
+          <NavigationProperty Name="contraseña" Relationship="Self.Contraseña_Usuario_usuario_id" FromRole="usuario" ToRole="contraseña" />
+          <NavigationProperty Name="doctor" Relationship="Self.Doctor_Usuario_id" FromRole="usuario" ToRole="doctor" />
+          <NavigationProperty Name="paciente" Relationship="Self.paciente_Usuario_id" FromRole="usuario" ToRole="paciente" />
+          <NavigationProperty Name="perfil" Relationship="Self.Perfil_Usuario_id" FromRole="usuario" ToRole="perfil" />
+        </EntityType>
+        <Association Name="Asistente_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="asistente" Type="Self.asistente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="asistente">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_asistente_id">
+          <End Role="asistente" Type="Self.asistente" Multiplicity="0..1" />
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asistente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="preconsulta">
+              <PropertyRef Name="asistente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_Doctor_id">
+          <End Role="doctor" Type="Self.doctor" Multiplicity="0..1" />
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="doctor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="doctor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cita_Paciente_id">
+          <End Role="paciente" Type="Self.paciente" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paciente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="paciente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Preconsulta_Cita_id">
+          <End Role="cita" Type="Self.cita" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cita">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="preconsulta">
+              <PropertyRef Name="cita_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Contraseña_Usuario_usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="contraseña" Type="Self.contraseña" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contraseña">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TempSales_SalesReason">
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="datos_preconsulta" Type="Self.datos_preconsulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preconsulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="datos_preconsulta">
+              <PropertyRef Name="preconsulta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="diagnostico_preconsulta_id">
+          <End Role="preconsulta" Type="Self.preconsulta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="preconsulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="diagnostico">
+              <PropertyRef Name="preconsulta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Examen_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="examen" Type="Self.examen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="examen">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Nutricion_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="nutricion" Type="Self.nutricion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nutricion">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tratamiento_Diagnostico_id">
+          <End Role="diagnostico" Type="Self.diagnostico" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tratamiento" Type="Self.tratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="diagnostico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tratamiento">
+              <PropertyRef Name="diagnostico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Doctor_Servicio_id">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="0..1" />
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="servicio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Doctor_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="doctor" Type="Self.doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="doctor">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="paciente_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="paciente" Type="Self.paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Perfil_Usuario_id">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="perfil" Type="Self.perfil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="perfil">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UHConsultaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="asistente" EntityType="Self.asistente" />
+          <EntitySet Name="cita" EntityType="Self.cita" />
+          <EntitySet Name="contraseña" EntityType="Self.contraseña" />
+          <EntitySet Name="datos_preconsulta" EntityType="Self.datos_preconsulta" />
+          <EntitySet Name="diagnostico" EntityType="Self.diagnostico" />
+          <EntitySet Name="doctor" EntityType="Self.doctor" />
+          <EntitySet Name="examen" EntityType="Self.examen" />
+          <EntitySet Name="nutricion" EntityType="Self.nutricion" />
+          <EntitySet Name="paciente" EntityType="Self.paciente" />
+          <EntitySet Name="perfil" EntityType="Self.perfil" />
+          <EntitySet Name="preconsulta" EntityType="Self.preconsulta" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tratamiento" EntityType="Self.tratamiento" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="Asistente_Usuario_id" Association="Self.Asistente_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asistente" EntitySet="asistente" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_asistente_id" Association="Self.Cita_asistente_id">
+            <End Role="asistente" EntitySet="asistente" />
+            <End Role="preconsulta" EntitySet="preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_Doctor_id" Association="Self.Cita_Doctor_id">
+            <End Role="doctor" EntitySet="doctor" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
+          <AssociationSet Name="Cita_Paciente_id" Association="Self.Cita_Paciente_id">
+            <End Role="paciente" EntitySet="paciente" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
+          <AssociationSet Name="Preconsulta_Cita_id" Association="Self.Preconsulta_Cita_id">
+            <End Role="cita" EntitySet="cita" />
+            <End Role="preconsulta" EntitySet="preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="Contraseña_Usuario_usuario_id" Association="Self.Contraseña_Usuario_usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="contraseña" EntitySet="contraseña" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempSales_SalesReason" Association="Self.FK_TempSales_SalesReason">
+            <End Role="preconsulta" EntitySet="preconsulta" />
+            <End Role="datos_preconsulta" EntitySet="datos_preconsulta" />
+          </AssociationSet>
+          <AssociationSet Name="diagnostico_preconsulta_id" Association="Self.diagnostico_preconsulta_id">
+            <End Role="preconsulta" EntitySet="preconsulta" />
+            <End Role="diagnostico" EntitySet="diagnostico" />
+          </AssociationSet>
+          <AssociationSet Name="Examen_Diagnostico_id" Association="Self.Examen_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="examen" EntitySet="examen" />
+          </AssociationSet>
+          <AssociationSet Name="Nutricion_Diagnostico_id" Association="Self.Nutricion_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="nutricion" EntitySet="nutricion" />
+          </AssociationSet>
+          <AssociationSet Name="Tratamiento_Diagnostico_id" Association="Self.Tratamiento_Diagnostico_id">
+            <End Role="diagnostico" EntitySet="diagnostico" />
+            <End Role="tratamiento" EntitySet="tratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="Doctor_Servicio_id" Association="Self.Doctor_Servicio_id">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="Doctor_Usuario_id" Association="Self.Doctor_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="doctor" EntitySet="doctor" />
+          </AssociationSet>
+          <AssociationSet Name="paciente_Usuario_id" Association="Self.paciente_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="Perfil_Usuario_id" Association="Self.Perfil_Usuario_id">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="perfil" EntitySet="perfil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UHConsultaModelStoreContainer" CdmEntityContainer="UHConsultaEntities">
+          <EntitySetMapping Name="asistente">
+            <EntityTypeMapping TypeName="UHConsultaModel.asistente">
+              <MappingFragment StoreEntitySet="asistente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cita">
+            <EntityTypeMapping TypeName="UHConsultaModel.cita">
+              <MappingFragment StoreEntitySet="cita">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="paciente_id" ColumnName="paciente_id" />
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contraseña">
+            <EntityTypeMapping TypeName="UHConsultaModel.contraseña">
+              <MappingFragment StoreEntitySet="contraseña">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="olvidada" ColumnName="olvidada" />
+                <ScalarProperty Name="solicitud" ColumnName="solicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datos_preconsulta">
+            <EntityTypeMapping TypeName="UHConsultaModel.datos_preconsulta">
+              <MappingFragment StoreEntitySet="datos_preconsulta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="preconsulta_id" ColumnName="preconsulta_id" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="estatura" ColumnName="estatura" />
+                <ScalarProperty Name="presion" ColumnName="presion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="diagnostico">
+            <EntityTypeMapping TypeName="UHConsultaModel.diagnostico">
+              <MappingFragment StoreEntitySet="diagnostico">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="preconsulta_id" ColumnName="preconsulta_id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="doctor">
+            <EntityTypeMapping TypeName="UHConsultaModel.doctor">
+              <MappingFragment StoreEntitySet="doctor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="servicio_id" ColumnName="servicio_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="examen">
+            <EntityTypeMapping TypeName="UHConsultaModel.examen">
+              <MappingFragment StoreEntitySet="examen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nutricion">
+            <EntityTypeMapping TypeName="UHConsultaModel.nutricion">
+              <MappingFragment StoreEntitySet="nutricion">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+                <ScalarProperty Name="peso_usual" ColumnName="peso_usual" />
+                <ScalarProperty Name="c_muñeca" ColumnName="c_muñeca" />
+                <ScalarProperty Name="a_rodilla" ColumnName="a_rodilla" />
+                <ScalarProperty Name="c_braquial" ColumnName="c_braquial" />
+                <ScalarProperty Name="c_abdominal" ColumnName="c_abdominal" />
+                <ScalarProperty Name="c_cadera" ColumnName="c_cadera" />
+                <ScalarProperty Name="porcentaje_grasa" ColumnName="porcentaje_grasa" />
+                <ScalarProperty Name="talla_utilizar" ColumnName="talla_utilizar" />
+                <ScalarProperty Name="PI_utilizar" ColumnName="PI_utilizar" />
+                <ScalarProperty Name="IMC" ColumnName="IMC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paciente">
+            <EntityTypeMapping TypeName="UHConsultaModel.paciente">
+              <MappingFragment StoreEntitySet="paciente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="perfil">
+            <EntityTypeMapping TypeName="UHConsultaModel.perfil">
+              <MappingFragment StoreEntitySet="perfil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="primer_apellido" ColumnName="primer_apellido" />
+                <ScalarProperty Name="segundo_apellido" ColumnName="segundo_apellido" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="estado_civil" ColumnName="estado_civil" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="canton" ColumnName="canton" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+                <ScalarProperty Name="direccion_detallada" ColumnName="direccion_detallada" />
+                <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preconsulta">
+            <EntityTypeMapping TypeName="UHConsultaModel.preconsulta">
+              <MappingFragment StoreEntitySet="preconsulta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cita_id" ColumnName="cita_id" />
+                <ScalarProperty Name="asistente_id" ColumnName="asistente_id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicio">
+            <EntityTypeMapping TypeName="UHConsultaModel.servicio">
+              <MappingFragment StoreEntitySet="servicio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="UHConsultaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tratamiento">
+            <EntityTypeMapping TypeName="UHConsultaModel.tratamiento">
+              <MappingFragment StoreEntitySet="tratamiento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="diagnostico_id" ColumnName="diagnostico_id" />
+                <ScalarProperty Name="Medicamento" ColumnName="Medicamento" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+                <ScalarProperty Name="dosis" ColumnName="dosis" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="UHConsultaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

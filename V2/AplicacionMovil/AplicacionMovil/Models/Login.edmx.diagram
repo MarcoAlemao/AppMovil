@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c1fb313b1a74a58b79ee23f64312262" Name="Diagram1">
+        <EntityTypeShape EntityType="UHConsultaModel.asistente" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.cita" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.contraseña" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.datos_preconsulta" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.diagnostico" Width="1.5" PointX="7.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.doctor" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.examen" Width="1.5" PointX="9.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.nutricion" Width="1.5" PointX="9.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.paciente" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.perfil" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.preconsulta" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.servicio" Width="1.5" PointX="3.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.tratamiento" Width="1.5" PointX="9.75" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UHConsultaModel.usuario" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="UHConsultaModel.Asistente_Usuario_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Cita_asistente_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Cita_Doctor_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Cita_Paciente_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Preconsulta_Cita_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Contraseña_Usuario_usuario_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.FK_TempSales_SalesReason" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.diagnostico_preconsulta_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Examen_Diagnostico_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Nutricion_Diagnostico_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Tratamiento_Diagnostico_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Doctor_Servicio_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Doctor_Usuario_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.paciente_Usuario_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UHConsultaModel.Perfil_Usuario_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
